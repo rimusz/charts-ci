@@ -4,7 +4,7 @@
 [![Docker Repository on Quay](https://quay.io/repository/rimusz/gke-charts-ci/status "Docker Repository on Quay")](https://quay.io/repository/rimusz/gke-charts-ci)
 
 Docker image of [ct](https://github.com/helm/chart-testing) tool to test Helm Charts on GKE.
-It is based from [Dokerfile](https://github.com/helm/chart-testing/blob/master/examples/gke/Dockerfile).
+It is based from [Dockerfile](https://github.com/helm/chart-testing/blob/master/examples/gke/Dockerfile).
 
 ## Docker Image
 
