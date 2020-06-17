@@ -8,5 +8,6 @@ It is based from [Dockerfile](https://github.com/helm/chart-testing/blob/master/
 
 ## Docker Image
 
-A Docker image is available at `quay.io/rimusz/gke-charts-ci` with list of
-available tags [here](https://quay.io/repository/rimusz/gke-charts-ci?tab=tags).
+A Docker image is available at:
+- `quay.io/rimusz/gke-charts-ci` with list of available tags [here](https://quay.io/repository/rimusz/gke-charts-ci?tab=tags).
+- `docker.io/rimusz/gke-charts-ci` with list of available tags [here](https://hub.docker.com/repository/docker/rimusz/gke-charts-ci/tag).
