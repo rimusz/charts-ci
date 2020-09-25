@@ -12,10 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM quay.io/helmpack/chart-testing:v3.0.0
+FROM quay.io/helmpack/chart-testing:v3.1.0
 
 ENV PATH /google-cloud-sdk/bin:$PATH
-ARG CLOUD_SDK_VERSION=304.0.0
+ARG CLOUD_SDK_VERSION=311.0.0
 RUN curl -LO "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-$CLOUD_SDK_VERSION-linux-x86_64.tar.gz" && \
     tar xzf "google-cloud-sdk-$CLOUD_SDK_VERSION-linux-x86_64.tar.gz" && \
     rm "google-cloud-sdk-$CLOUD_SDK_VERSION-linux-x86_64.tar.gz" && \
