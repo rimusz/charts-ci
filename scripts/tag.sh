@@ -1,7 +1,8 @@
 #!/bin/sh -e
 
 # shellcheck disable=SC2002
-tag=$1
+tag=${TAG_ARGS}
+
 if [[ "${tag}" == "" ]]
 then
     echo "Please provide tag x.x.x !!!"
