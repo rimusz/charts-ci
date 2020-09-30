@@ -1,0 +1,59 @@
+resources:
+  - name: gke_charts_ci
+    type: GitRepo
+    configuration:
+      gitProvider: rimas_github
+      path: rimusz/gke-charts-ci
+      files:
+        exclude: .pipelines/.*.yml$
+      branches:
+        include: ^master$
+      tags:
+        include: .*.*.*
+      buildOn:
+        commit: false
+        tagCreate: true
+
+pipelines:
+  - name: Build_gke_charts_ci
+    configuration:
+    steps:
+      - name: build_image
+        type: DockerBuild
+        configuration:
+          chronological: true
+          affinityGroup: bldGroup
+          dockerFileLocation: .
+          dockerFileName: Dockerfile
+          dockerImageName: gke-charts-ci
+          dockerImageTag: ${res_gke_charts_ci_gitTagName}
+          inputResources:
+            - name: gke_charts_ci
+        execution:
+          onStart:
+            - echo "Starting docker image build..."
+          onSuccess:
+            - echo "docker image build finished..."
+          onFailure:
+            - echo "docker image build failed!!!"
+      - name: push_image
+        type: Bash
+        configuration:
+          chronological: true
+          affinityGroup: bldGroup
+          environmentVariables:
+            TAG_NAME: ${res_gke_charts_ci_gitTagName}
+            GITHUB_REPO: docker.pkg.github.com/rimusz/gke-charts-ci
+          inputResources:
+            - name: gke_charts_ci
+              trigger: false
+          integrations:
+            - name: rimas_github
+          inputSteps:
+            - name: build_image
+        execution:
+          onExecute:
+            - echo ${int_rimas_github_token} | docker login docker.pkg.github.com -u rimusz --password-stdin
+            - docker tag gke-charts-ci:${TAG_NAME} ${GITHUB_REPO}/gke-charts-ci:${TAG_NAME}
+            - echo docker push ${GITHUB_REPO}/gke-charts-ci:${TAG_NAME}
+            - docker push ${GITHUB_REPO}/gke-charts-ci:${TAG_NAME}
