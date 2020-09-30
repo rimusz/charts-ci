@@ -16,7 +16,6 @@ resources:
 
 pipelines:
   - name: Build_gke_charts_ci
-    configuration:
     steps:
       - name: build_image
         type: DockerBuild
