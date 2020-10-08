@@ -11,4 +11,3 @@ It is based from [Dockerfile](https://github.com/helm/chart-testing/blob/master/
 A Docker image is available at:
 - `docker.pkg.github.com/rimusz/charts-ci/charts-ci` with list of available tags [here](https://github.com/rimusz/charts-ci/packages/420437/versions)
 - `quay.io/rimusz/charts-ci` with list of available tags [here](https://quay.io/repository/rimusz/charts-ci?tab=tags).
-- `docker.io/rimusz/charts-ci` with list of available tags [here](https://hub.docker.com/repository/docker/rimusz/charts-ci/tags).
