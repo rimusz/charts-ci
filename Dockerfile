@@ -23,6 +23,11 @@ RUN curl -LO "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-
     rm -rf /google-cloud-sdk/.install/.backup && \
     gcloud version
 
+ARG AWS_IAM_AUTHENTICATOR_URL=https://amazon-eks.s3.us-west-2.amazonaws.com/1.17.9/2020-08-04/bin/linux/amd64/aws-iam-authenticator
+
+ADD ${AWS_IAM_AUTHENTICATOR_URL} /usr/local/bin/aws-iam-authenticator
+RUN chmod +x /usr/local/bin/aws-iam-authenticator
+
 RUN gcloud config set core/disable_usage_reporting true && \
     gcloud config set component_manager/disable_update_check true && \
     gcloud config set metrics/environment github_docker_image
