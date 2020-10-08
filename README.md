@@ -1,4 +1,4 @@
-# Chart Testing on GKE
+# Chart Testing on GKE and EKS
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Release](https://img.shields.io/github/release/rimusz/gke-charts-ci.svg?style=flat-square)](https://github.com/rimusz/gke-charts-ci/releases/latest)
