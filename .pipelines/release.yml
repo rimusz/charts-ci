@@ -44,7 +44,7 @@ pipelines:
             TAG_NAME: ${res_charts_ci_gitTagName}
             GITHUB_REPO: docker.pkg.github.com/rimusz/charts-ci
           inputResources:
-            - name: gke_charts_ci
+            - name: charts_ci
               trigger: false
           integrations:
             - name: rimas_github
