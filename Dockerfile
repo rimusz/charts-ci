@@ -14,6 +14,8 @@
 
 FROM quay.io/helmpack/chart-testing:v3.1.1
 
+RUN apk add bash tree curl wget
+
 ENV PATH /google-cloud-sdk/bin:$PATH
 ARG CLOUD_SDK_VERSION=313.0.0
 RUN curl -LO "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-$CLOUD_SDK_VERSION-linux-x86_64.tar.gz" && \
