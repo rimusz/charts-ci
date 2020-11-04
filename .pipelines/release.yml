@@ -55,4 +55,3 @@ pipelines:
             - echo ${int_rimas_github_token} | docker login docker.pkg.github.com -u rimusz --password-stdin
             - docker tag charts-ci:${TAG_NAME} ${GITHUB_REPO}/charts-ci:${TAG_NAME}
             - echo docker push ${GITHUB_REPO}/charts-ci:${TAG_NAME}
-            - docker push ${GITHUB_REPO}/charts-ci:${TAG_NAME}
