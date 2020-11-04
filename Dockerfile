@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM quay.io/helmpack/chart-testing:v3.2.0
+FROM quay.io/helmpack/chart-testing:v3.3.0
 
 RUN apk add bash tree curl wget
 
