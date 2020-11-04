@@ -67,7 +67,7 @@ jobs:
 
       - name: Push image to GitHub Packages Registry
         run: |
-          IMAGE_ID=docker.pkg.github.com/${{ github.repository_owner }}/charts-ci/$IMAGE_NAME
+          IMAGE_ID=docker.pkg.github.com/${{ github.repository_owner }}/charts-ci/image
 
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
