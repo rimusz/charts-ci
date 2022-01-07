@@ -25,12 +25,12 @@ RUN curl -LO "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-
     rm -rf /google-cloud-sdk/.install/.backup && \
     gcloud version
 
-ARG AWS_IAM_AUTHENTICATOR_URL=https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/aws-iam-authenticator
+ARG AWS_IAM_AUTHENTICATOR_URL=https://amazon-eks.s3.us-west-2.amazonaws.com/1.21.2/2021-07-05/bin/darwin/amd64/aws-iam-authenticator
 
 ADD ${AWS_IAM_AUTHENTICATOR_URL} /usr/local/bin/aws-iam-authenticator
 RUN chmod +x /usr/local/bin/aws-iam-authenticator
 
-ARG YQ_URL=https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64
+ARG YQ_URL=https://github.com/mikefarah/yq/releases/download/v4.16.2/yq_linux_amd64
 
 ADD ${YQ_URL} /usr/local/bin/yq
 RUN chmod +x /usr/local/bin/yq
