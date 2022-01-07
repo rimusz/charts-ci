@@ -9,4 +9,4 @@ It is based from [Dockerfile](https://github.com/helm/chart-testing/blob/master/
 ## Docker Image
 
 A Docker image is available at:
-- `docker.pkg.github.com/rimusz/charts-ci/image` with list of available tags [here](ghcr.io/rimusz/charts-ci/image)
+- `docker.pkg.github.com/rimusz/charts-ci/image` with list of available tags [here](https://github.com/rimusz/charts-ci/pkgs/container/charts-ci%2Fimage)
