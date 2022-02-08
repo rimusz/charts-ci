@@ -29,7 +29,7 @@ ARG AWS_IAM_AUTHENTICATOR_URL=https://amazon-eks.s3.us-west-2.amazonaws.com/1.19
 ADD ${AWS_IAM_AUTHENTICATOR_URL} /usr/local/bin/aws-iam-authenticator
 RUN chmod +x /usr/local/bin/aws-iam-authenticator
 
-ARG YQ_URL=https://github.com/mikefarah/yq/releases/download/v4.16.2/yq_linux_amd64
+ARG YQ_URL=https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64
 
 ADD ${YQ_URL} /usr/local/bin/yq
 RUN chmod +x /usr/local/bin/yq
