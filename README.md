@@ -4,7 +4,6 @@
 [![Release](https://img.shields.io/github/release/rimusz/charts-ci.svg?style=flat-square)](https://github.com/rimusz/charts-ci/releases/latest)
 
 Docker image of [ct](https://github.com/helm/chart-testing) tool to test Helm Charts on GKE or EKS.
-It is based from [Dockerfile](https://github.com/helm/chart-testing/blob/master/examples/gke/Dockerfile).
 
 ## Docker Image
 
