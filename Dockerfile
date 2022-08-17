@@ -17,7 +17,7 @@ FROM quay.io/helmpack/chart-testing:v3.7.0
 RUN apk add bash tree curl wget
 
 ENV PATH /google-cloud-sdk/bin:$PATH
-ARG CLOUD_SDK_VERSION=397.0.0
+ARG CLOUD_SDK_VERSION=398.0.0
 RUN curl -LO "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-$CLOUD_SDK_VERSION-linux-x86_64.tar.gz" && \
     tar xzf "google-cloud-sdk-$CLOUD_SDK_VERSION-linux-x86_64.tar.gz" && \
     rm "google-cloud-sdk-$CLOUD_SDK_VERSION-linux-x86_64.tar.gz" && \
@@ -25,7 +25,7 @@ RUN curl -LO "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-
     rm -rf /google-cloud-sdk/.install/.backup && \
     gcloud version
 
-ARG AWS_IAM_AUTHENTICATOR_URL=https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/aws-iam-authenticator
+ARG AWS_IAM_AUTHENTICATOR_URL=https://s3.us-west-2.amazonaws.com/amazon-eks/1.21.2/2021-07-05/bin/linux/amd64/aws-iam-authenticator
 ADD ${AWS_IAM_AUTHENTICATOR_URL} /usr/local/bin/aws-iam-authenticator
 RUN chmod +x /usr/local/bin/aws-iam-authenticator
 
