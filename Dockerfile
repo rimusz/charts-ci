@@ -14,6 +14,14 @@
 
 FROM quay.io/helmpack/chart-testing:v3.7.0
 
+# Override kubectl 
+# https://github.com/aws/aws-cli/issues/6920
+ARG kubectl_version=v1.23.10
+LABEL kubectl_version=$kubectl_version
+RUN curl -LO "https://storage.googleapis.com/kubernetes-release/release/$kubectl_version/bin/linux/amd64/kubectl" && \
+    chmod +x kubectl && \
+    mv kubectl /usr/local/bin/
+
 RUN apk add bash tree curl wget
 
 ENV PATH /google-cloud-sdk/bin:$PATH
