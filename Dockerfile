@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM quay.io/helmpack/chart-testing:v3.7.0
+FROM quay.io/helmpack/chart-testing:v3.7.1
 
 # Override kubectl 
 # https://github.com/aws/aws-cli/issues/6920
@@ -25,7 +25,7 @@ RUN curl -LO "https://storage.googleapis.com/kubernetes-release/release/$kubectl
 RUN apk add bash tree curl wget
 
 ENV PATH /google-cloud-sdk/bin:$PATH
-ARG CLOUD_SDK_VERSION=398.0.0
+ARG CLOUD_SDK_VERSION=403.0.0
 RUN curl -LO "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-$CLOUD_SDK_VERSION-linux-x86_64.tar.gz" && \
     tar xzf "google-cloud-sdk-$CLOUD_SDK_VERSION-linux-x86_64.tar.gz" && \
     rm "google-cloud-sdk-$CLOUD_SDK_VERSION-linux-x86_64.tar.gz" && \
