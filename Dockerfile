@@ -34,7 +34,6 @@ ENV CLOUDSDK_PYTHON=/usr/bin/python3
 RUN if [[ "${TARGETARCH}" == "arm64" ]] ; then export GOOGLE_SDK_ARCH="arm" ; else export GOOGLE_SDK_ARCH="x86_64" ; fi && \
     curl -LO "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-${GOOGLE_SDK_ARCH}.tar.gz" && \
     tar xzf "google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-${GOOGLE_SDK_ARCH}.tar.gz" && \
-    ./google-cloud-sdk/install.sh --quiet && \
     rm "google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-${GOOGLE_SDK_ARCH}.tar.gz" && \
     ln -s /lib /lib64 && \
     ln -s /usr/bin/python3 /google-cloud-sdk/bin/python3 && \
