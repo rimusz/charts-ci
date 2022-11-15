@@ -12,8 +12,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: docker/setup-buildx-action@v2
-      - uses: actions/checkout@v2
-
-      - name: Run tests
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      -
+        name: Run tests
         run: docker buildx build --no-cache --platform linux/amd64,linux/arm64 . --file Dockerfile
