@@ -6,9 +6,6 @@ on:
     tags:
       - v*
 
-env:
-  IMAGE_NAME: charts-ci
-
 jobs:
   # Run tests.
   test:
@@ -42,15 +39,15 @@ jobs:
         name: Checkout
         uses: actions/checkout@v3
       -
-        name: Set up version
+        name: Set the version
         run: |
           # Strip git ref prefix from version
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
 
           # Strip "v" prefix from tag name
-          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-          export VERSION=$VERSION
-          echo VERSION=$VERSION
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo ${VERSION} | sed -e 's/^v//')
+          echo "VERSION=${VERSION}" >> $GITHUB_ENV
+          echo "VERSION=${{VERSION}}"
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -72,5 +69,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME:latest
-            ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME:$VERSION
+            ghcr.io/${{ github.repository_owner }}/charts-ci:${{VERSION}}
