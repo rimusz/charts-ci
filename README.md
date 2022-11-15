@@ -8,4 +8,4 @@ Docker image of [ct](https://github.com/helm/chart-testing) tool to test Helm Ch
 ## Docker Image
 
 A Docker image is available at:
-- `ghcr.io/rimusz/charts-ci/image` with list of available tags [here](https://github.com/rimusz/charts-ci/pkgs/container/charts-ci%2Fimage)
+- `ghcr.io/rimusz/charts-ci/image` with a list of available tags [here](https://github.com/rimusz/charts-ci/pkgs/container/charts-ci%2Fimage)
