@@ -66,4 +66,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/charts-ci:${{ env.VERSION }}
+            ghcr.io/${{ github.repository_owner }}/charts-ci/image:${{ env.VERSION }}
