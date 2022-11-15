@@ -17,12 +17,12 @@ FROM --platform=${TARGETPLATFORM} quay.io/helmpack/chart-testing:v3.7.1
 ARG TARGETARCH
 ARG YQ_VERSION=3.4.1
 ARG KUBECTL_VERSION=1.23.10
-ARG CLOUD_SDK_VERSION=403.0.0
+ARG CLOUD_SDK_VERSION=409.0.0
 ARG AWS_IAM_AUTHENTICATOR_VERSION=0.5.9
 
 # Override kubectl 
 # https://github.com/aws/aws-cli/issues/6920
-LABEL KUBECTL_VERSION=$KUBECTL_VERSION
+LABEL KUBECTL_VERSION=${KUBECTL_VERSION}
 RUN curl -LO "https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/${TARGETARCH}/kubectl" && \
     chmod +x kubectl && \
     mv kubectl /usr/local/bin/
@@ -31,9 +31,10 @@ RUN apk add bash tree curl wget
 
 ENV PATH /google-cloud-sdk/bin:$PATH
 
-RUN curl -LO "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-$CLOUD_SDK_VERSION-linux-${TARGETARCH}.tar.gz" && \
-    tar xzf "google-cloud-sdk-$CLOUD_SDK_VERSION-linux-${TARGETARCH}.tar.gz" && \
-    rm "google-cloud-sdk-$CLOUD_SDK_VERSION-linux-${TARGETARCH}.tar.gz" && \
+RUN if [[ "${TARGETARCH}" == "arm64" ]] ; then export GOOGLE_SDK_ARCH="arm" ; else export GOOGLE_SDK_ARCH="${TARGETARCH}" ; fi && \
+    curl -LO "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-${GOOGLE_SDK_ARCH}.tar.gz" && \
+    tar xzf "google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-${GOOGLE_SDK_ARCH}.tar.gz" && \
+    rm "google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-${GOOGLE_SDK_ARCH}.tar.gz" && \
     ln -s /lib /lib64 && \
     rm -rf /google-cloud-sdk/.install/.backup && \
     gcloud version
