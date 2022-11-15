@@ -31,7 +31,7 @@ RUN apk add bash tree curl wget
 
 ENV PATH /google-cloud-sdk/bin:$PATH
 
-RUN --platform=linux/x86-64 curl -LO "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-$CLOUD_SDK_VERSION-linux-${TARGETARCH}.tar.gz" && \
+RUN curl -LO "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-$CLOUD_SDK_VERSION-linux-${TARGETARCH}.tar.gz" && \
     tar xzf "google-cloud-sdk-$CLOUD_SDK_VERSION-linux-${TARGETARCH}.tar.gz" && \
     rm "google-cloud-sdk-$CLOUD_SDK_VERSION-linux-${TARGETARCH}.tar.gz" && \
     ln -s /lib /lib64 && \
