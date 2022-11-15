@@ -20,4 +20,8 @@ jobs:
         uses: docker/setup-buildx-action@v2
       -
         name: Run tests
-        run: docker buildx build --no-cache --platform linux/amd64,linux/arm64 . --file Dockerfile
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: false
