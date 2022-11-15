@@ -47,7 +47,7 @@ jobs:
           # Strip "v" prefix from tag name
           [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo ${VERSION} | sed -e 's/^v//')
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
-          echo "VERSION=${{VERSION}}"
+          echo "VERSION=${{ env.VERSION }}"
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -69,4 +69,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/charts-ci:${{VERSION}}
+            ghcr.io/${{ github.repository_owner }}/charts-ci:${{ env.VERSION }}
