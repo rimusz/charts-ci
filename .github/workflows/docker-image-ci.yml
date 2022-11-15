@@ -7,16 +7,13 @@ on:
     branches: [ master ]
 
 jobs:
-
-  build:
-
+  # Run tests.
+  test:
     runs-on: ubuntu-latest
 
     steps:
       - uses: docker/setup-buildx-action@v2
       - uses: actions/checkout@v2
 
-      - name: Run tests amd64
-        run: docker buildx build --no-cache --platform linux/amd64 . --file Dockerfile --tag charts-ci:$(date +%s)
-      - name: Run tests arm64
-        run: docker buildx build --no-cache --platform linux/arm64 . --file Dockerfile --tag charts-ci:$(date +%s)
+      - name: Run tests
+        run: docker buildx build --no-cache --platform linux/amd64,linux/arm64 . --file Dockerfile

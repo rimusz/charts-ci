@@ -20,6 +20,8 @@ ARG KUBECTL_VERSION=1.23.10
 ARG CLOUD_SDK_VERSION=409.0.0
 ARG AWS_IAM_AUTHENTICATOR_VERSION=0.5.9
 
+RUN apk add bash tree curl wget
+
 # Override kubectl
 # https://github.com/aws/aws-cli/issues/6920
 LABEL KUBECTL_VERSION=${KUBECTL_VERSION}
@@ -27,28 +29,25 @@ RUN curl -LO "https://storage.googleapis.com/kubernetes-release/release/v${KUBEC
     chmod +x kubectl && \
     mv kubectl /usr/local/bin/
 
-RUN apk add bash tree curl wget
-
 ENV PATH /google-cloud-sdk/bin:$PATH
-
 RUN if [[ "${TARGETARCH}" == "arm64" ]] ; then export GOOGLE_SDK_ARCH="arm" ; else export GOOGLE_SDK_ARCH="x86_64" ; fi && \
     curl -LO "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-${GOOGLE_SDK_ARCH}.tar.gz" && \
     tar xzf "google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-${GOOGLE_SDK_ARCH}.tar.gz" && \
+    ./google-cloud-sdk/install.sh --quiet && \
     rm "google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-${GOOGLE_SDK_ARCH}.tar.gz" && \
     ln -s /lib /lib64 && \
-    rm -rf /google-cloud-sdk/.install/.backup && \
-    gcloud version
+    rm -rf /google-cloud-sdk/.install/.backup
 
 ARG AWS_IAM_AUTHENTICATOR_URL=https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v${AWS_IAM_AUTHENTICATOR_VERSION}/aws-iam-authenticator_${AWS_IAM_AUTHENTICATOR_VERSION}_linux_${TARGETARCH}
 ADD ${AWS_IAM_AUTHENTICATOR_URL} /usr/local/bin/aws-iam-authenticator
 RUN chmod +x /usr/local/bin/aws-iam-authenticator
 
 ARG YQ_URL=https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_${TARGETARCH}
-
 ADD ${YQ_URL} /usr/local/bin/yq
 RUN chmod +x /usr/local/bin/yq
 
-RUN gcloud config set core/disable_usage_reporting true && \
+RUN gcloud version && \
+    gcloud config set core/disable_usage_reporting true && \
     gcloud config set component_manager/disable_update_check true && \
     gcloud config set metrics/environment github_docker_image
 
