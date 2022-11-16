@@ -16,18 +16,10 @@ FROM --platform=${TARGETPLATFORM} quay.io/helmpack/chart-testing:v3.7.1
 
 ARG TARGETARCH
 ARG YQ_VERSION=3.4.1
-ARG KUBECTL_VERSION=1.23.10
 ARG CLOUD_SDK_VERSION=409.0.0
 ARG AWS_IAM_AUTHENTICATOR_VERSION=0.5.9
 
 RUN apk add tree wget
-
-# Override kubectl
-# https://github.com/aws/aws-cli/issues/6920
-LABEL KUBECTL_VERSION=${KUBECTL_VERSION}
-RUN curl -LO "https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/${TARGETARCH}/kubectl" && \
-    chmod +x kubectl && \
-    mv kubectl /usr/local/bin/
 
 ENV PATH /google-cloud-sdk/bin:$PATH
 ENV CLOUDSDK_PYTHON=/usr/bin/python3
