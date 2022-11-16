@@ -22,13 +22,6 @@ ARG AWS_IAM_AUTHENTICATOR_VERSION=0.5.9
 
 RUN apk add tree wget
 
-# Override kubectl
-# https://github.com/aws/aws-cli/issues/6920
-LABEL KUBECTL_VERSION=${KUBECTL_VERSION}
-RUN curl -LO "https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/${TARGETARCH}/kubectl" && \
-    chmod +x kubectl && \
-    mv kubectl /usr/local/bin/
-
 ENV PATH /google-cloud-sdk/bin:$PATH
 ENV CLOUDSDK_PYTHON=/usr/bin/python3
 RUN if [[ "${TARGETARCH}" == "arm64" ]] ; then export GOOGLE_SDK_ARCH="arm" ; else export GOOGLE_SDK_ARCH="x86_64" ; fi && \
