@@ -5,7 +5,7 @@
 
 Docker image of [ct](https://github.com/helm/chart-testing) tool to test Helm Charts on GKE or EKS.
 
-## Docker Image
+## Docker Image (Supports ARM too)
 
 A Docker image is available at:
 - `ghcr.io/rimusz/charts-ci/image` with a list of available tags [here](https://github.com/rimusz/charts-ci/pkgs/container/charts-ci%2Fimage)
