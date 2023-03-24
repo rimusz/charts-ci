@@ -12,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM --platform=${TARGETPLATFORM} quay.io/helmpack/chart-testing:v3.7.1
+FROM --platform=${TARGETPLATFORM} quay.io/helmpack/chart-testing:v3.8.0
 
 ARG TARGETARCH
 ARG YQ_VERSION=3.4.1
-ARG CLOUD_SDK_VERSION=409.0.0
-ARG AWS_IAM_AUTHENTICATOR_VERSION=0.5.9
+ARG CLOUD_SDK_VERSION=423.0.0
+ARG AWS_IAM_AUTHENTICATOR_VERSION=0.6.2
 
 RUN apk add tree wget
 
