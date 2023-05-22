@@ -15,8 +15,8 @@
 FROM --platform=${TARGETPLATFORM} quay.io/helmpack/chart-testing:v3.8.0
 
 ARG TARGETARCH
-ARG YQ_VERSION=3.4.1
-ARG CLOUD_SDK_VERSION=423.0.0
+ARG YQ_VERSION=4.33.3
+ARG CLOUD_SDK_VERSION=431.0.0
 ARG AWS_IAM_AUTHENTICATOR_VERSION=0.6.2
 
 RUN apk add tree wget
@@ -36,7 +36,7 @@ ARG AWS_IAM_AUTHENTICATOR_URL=https://github.com/kubernetes-sigs/aws-iam-authent
 ADD ${AWS_IAM_AUTHENTICATOR_URL} /usr/local/bin/aws-iam-authenticator
 RUN chmod +x /usr/local/bin/aws-iam-authenticator
 
-ARG YQ_URL=https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_${TARGETARCH}
+ARG YQ_URL=https://github.com/mikefarah/yq/releases/download/v${YQ_VERSION}/yq_linux_${TARGETARCH}
 ADD ${YQ_URL} /usr/local/bin/yq
 RUN chmod +x /usr/local/bin/yq
 
